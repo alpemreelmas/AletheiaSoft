@@ -12,15 +12,15 @@ namespace AletheiaSoft.Infrastructure.Data;
 
 public static class InitialiserExtensions
 {
-    public static async Task InitialiseDatabaseAsync(this WebApplication app)
+    public static void InitialiseDatabaseAsync(this WebApplication app)
     {
         using var scope = app.Services.CreateScope();
 
         var initialiser = scope.ServiceProvider.GetRequiredService<ApplicationDbContextInitialiser>();
 
-        await initialiser.InitialiseAsync();
+        initialiser.InitialiseAsync();
 
-        await initialiser.SeedAsync();
+        /*await initialiser.SeedAsync();*/
     }
 }
 
@@ -39,11 +39,12 @@ public class ApplicationDbContextInitialiser
         _roleManager = roleManager;
     }
 
-    public async Task InitialiseAsync()
+    public void InitialiseAsync()
     {
         try
         {
-            await _context.Database.MigrateAsync();
+            Console.WriteLine("test");
+            /*await _context.Database.MigrateAsync();*/
         }
         catch (Exception ex)
         {
@@ -56,6 +57,7 @@ public class ApplicationDbContextInitialiser
     {
         try
         {
+            /*Console.WriteLine("test1");*/
             await TrySeedAsync();
         }
         catch (Exception ex)

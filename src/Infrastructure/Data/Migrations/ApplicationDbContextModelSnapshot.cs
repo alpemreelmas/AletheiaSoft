@@ -17,7 +17,7 @@ namespace AletheiaSoft.Infrastructure.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "9.0.0-preview.5.24306.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -81,8 +81,7 @@ namespace AletheiaSoft.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("Budget")
-                        .IsRequired()
+                    b.Property<int>("Budget")
                         .HasColumnType("int");
 
                     b.Property<int?>("ClientId")
@@ -102,8 +101,7 @@ namespace AletheiaSoft.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("LastDate")
-                        .IsRequired()
+                    b.Property<DateTime>("LastDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTimeOffset>("LastModified")
@@ -112,8 +110,7 @@ namespace AletheiaSoft.Infrastructure.Data.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("StartDate")
-                        .IsRequired()
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Title")

@@ -7,10 +7,12 @@ public class CreateClientCommandValidator : AbstractValidator<CreateClientComman
         RuleFor(v => v.FullName)
             .MaximumLength(200)
             .NotEmpty();
-        
-        RuleFor(v => v.Email)
+
+        RuleFor(v => v.Email)            
+            .NotEmpty()
             .EmailAddress()
-            .NotEmpty();
+            .WithMessage("MyField must be a valid email address if provided.");
+
         
         RuleFor(v => v.Phone)
             .MaximumLength(200)
@@ -18,14 +20,13 @@ public class CreateClientCommandValidator : AbstractValidator<CreateClientComman
         
         RuleFor(v => v.Adress)
             .MaximumLength(200);
-        
+
         RuleFor(x => x.Note)
             .Cascade(CascadeMode.Stop)
             .Must(BeNullOrWhitespace)
             .WithMessage("MyField must be null or comply with the other rules if not null.")
-            .When(x => !string.IsNullOrWhiteSpace(x.Note), ApplyConditionTo.CurrentValidator)
-            .EmailAddress()
-            .WithMessage("MyField must be a valid email address if provided.");
+            .When(x => !string.IsNullOrWhiteSpace(x.Note), ApplyConditionTo.CurrentValidator);
+
     }
 
     private bool BeNullOrWhitespace(string? value)

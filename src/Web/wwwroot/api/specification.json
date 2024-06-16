@@ -1,5 +1,5 @@
 {
-  "x-generator": "NSwag v14.0.3.0 (NJsonSchema v11.0.0.0 (Newtonsoft.Json v13.0.0.0))",
+  "x-generator": "NSwag v14.0.8.0 (NJsonSchema v11.0.1.0 (Newtonsoft.Json v13.0.0.0))",
   "openapi": "3.0.0",
   "info": {
     "title": "AletheiaSoft API",
@@ -1177,12 +1177,13 @@
             "type": "integer",
             "format": "int32"
           },
-          "fullName": {
+          "title": {
             "type": "string",
             "nullable": true
           },
-          "profilePic": {
-            "type": "string",
+          "budget": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         }
@@ -1223,6 +1224,11 @@
           },
           "yearlyPaymentDate": {
             "type": "string",
+            "nullable": true
+          },
+          "clientId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         }

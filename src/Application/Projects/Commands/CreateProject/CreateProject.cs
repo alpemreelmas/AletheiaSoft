@@ -13,6 +13,7 @@ public record CreateProjectCommand : IRequest<int>
         public int? YearlyCost { get; init; }
         public string? Currency { get; init; }
         public string? YearlyPaymentDate { get; init; }
+        public int? ClientId { get; init; }
 }
 
 public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
@@ -35,6 +36,7 @@ public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand,
             LastDate = DateTime.Parse(request.LastDate!),
             Currency = request.Currency,
             YearlyCost = request.YearlyCost,
+            ClientId = request.ClientId,
             YearlyPaymentDate =  request.YearlyPaymentDate is not null ? DateTime.Parse(request.YearlyPaymentDate!) : null
         };
 
