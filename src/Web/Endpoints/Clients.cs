@@ -3,6 +3,7 @@ using AletheiaSoft.Application.Clients.Commands.DeleteClient;
 using AletheiaSoft.Application.Clients.Commands.UpdateClient;
 using AletheiaSoft.Application.Clients.Queries.GetClientsWithPagination;
 using AletheiaSoft.Application.Common.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AletheiaSoft.Web.Endpoints;
 
@@ -11,13 +12,13 @@ public class Clients : EndpointGroupBase
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-            .RequireAuthorization()
             .MapGet(GetClientsWithPagination)
             .MapPost(CreateClient)
             .MapPut(UpdateClient, "{id}")
             .MapDelete(DeleteClient, "{id}");
     }
 
+    [Authorize]
     public Task<PaginatedList<ClientBriefDto>> GetClientsWithPagination(ISender sender, [AsParameters] GetClientsWithPaginationQuery query)
     {
         return sender.Send(query);

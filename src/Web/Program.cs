@@ -29,6 +29,7 @@ app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+
 app.UseSwaggerUi(settings =>
 {
     settings.Path = "/api";
@@ -61,11 +62,15 @@ app.UseExceptionHandler(errorApp =>
         await context.Response.WriteAsJsonAsync(new { contextFeature?.Error?.Message });
         await context.Response.CompleteAsync();
     });
-}); 
+});
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Map("/", () => Results.Redirect("/api"));
 
 app.MapEndpoints();
+
 
 app.Run();
 

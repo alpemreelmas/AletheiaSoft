@@ -1,6 +1,7 @@
 ﻿using AletheiaSoft.Application.Common.Interfaces;
 using AletheiaSoft.Application.Common.Mappings;
 using AletheiaSoft.Application.Common.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AletheiaSoft.Application.Clients.Queries.GetClientsWithPagination;
 
